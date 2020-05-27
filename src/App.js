@@ -6,26 +6,28 @@ import Home from './components/Home'
 import AboutUs from './components/AboutUs'
 import Navbar from './components/Navbar';
 
-import './assets/css/bootstrap.min.css'
-import 'bootstrap/dist/css/bootstrap.css';
+// import './assets/css/bootstrap.min.css'
+import './assets/css/custom.css'
+
+
 
 
 
 function App() {
   return (
-    <body>
-      <header className="App-header">
-        <Navbar />
-        <Switch>
-          <Route exact path="/" component={Home} />
-          <Route path="/about-us" component={AboutUs} />
-          {/* <Route path="/about" component={About} />
+
+    <header className="App-header">
+      <Navbar />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/about-us" component={AboutUs} />
+        {/* <Route path="/about" component={About} />
           <Route path="/contact" component={Contact} /> */}
-        </Switch>
+      </Switch>
 
 
-      </header>
-    </body>
+    </header>
+
   );
 }
 
