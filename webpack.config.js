@@ -1,21 +1,40 @@
-// webpack.config.js
+const path = require('path');
+
 module.exports = {
+    entry: path.resolve(__dirname, 'src', 'index.js'),
+    output: {
+        path: path.resolve(__dirname, 'output'),
+        filename: 'bundle.js'
+    },
+    resolve: {
+        extensions: ['.js', '.jsx'],
+        alias: {
+            components: path.resolve(__dirname, 'src', 'components'),
+            environment: path.resolve(__dirname, 'src', 'environment'),
+            styles: path.resolve(__dirname, 'src', 'styles'),
+        },
+    },
+    devServer: {
+        contentBase: './src',
+        publicPath: '/output',
+    },
     module: {
         rules: [
             {
+                test: /\.jsx$/,
+                use: {
+                    loader: 'babel-loader',
+                    options: {
+                        presets: ['@babel/preset-react', '@babel/preset-env', "es2015"]
+                    }
+                }
+            },
+            {
                 test: /\.scss$/,
                 use: [
-                    'style-loader', // creates style nodes from JS strings
-                    {
-                        loader: 'css-loader', // translates CSS into CommonJS
-                        options: {
-                            importLoaders: 1
-                        }
-                    },
-                    'postcss-loader', // post process the compiled CSS
-                    'sass-loader' // compiles Sass to CSS, using Node Sass by default
+                    'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
                 ]
             }
         ]
     }
-};
+}
