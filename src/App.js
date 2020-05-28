@@ -6,15 +6,11 @@ import Home from './components/Home'
 import AboutUs from './components/AboutUs'
 import Navbar from './components/Navbar';
 
-// import './assets/css/bootstrap.min.css'
-import './assets/css/custom.css'
-
-
-
-
-
 function App() {
+  console.log("This is React");
+
   return (
+
 
     <header className="App-header">
       <Navbar />

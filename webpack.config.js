@@ -1,40 +1,42 @@
 const path = require('path');
 
 module.exports = {
-    entry: path.resolve(__dirname, 'src', 'index.js'),
+    mode: 'development',
+    entry: './src/index.js',
     output: {
-        path: path.resolve(__dirname, 'output'),
+        path: '/',
         filename: 'bundle.js'
     },
-    resolve: {
-        extensions: ['.js', '.jsx'],
-        alias: {
-            components: path.resolve(__dirname, 'src', 'components'),
-            environment: path.resolve(__dirname, 'src', 'environment'),
-            styles: path.resolve(__dirname, 'src', 'styles'),
-        },
-    },
+    devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: './src',
-        publicPath: '/output',
+        contentBase: path.join(__dirname, 'public'),
+        compress: true,
+        port: 3000
     },
+
     module: {
         rules: [
             {
-                test: /\.jsx$/,
+                test: /\.js$/,
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: ['@babel/preset-react', '@babel/preset-env', "es2015"]
+                        presets: ['@babel/preset-env']
                     }
-                }
+                }, exclude: /node_modules/
             },
             {
-                test: /\.scss$/,
+                test: /\.s?css$/,
                 use: [
                     'style-loader', 'css-loader', 'postcss-loader', 'sass-loader'
                 ]
-            }
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf|png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader',
+                ],
+            },
         ]
     }
 }
