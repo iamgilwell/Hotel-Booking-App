@@ -1,16 +1,24 @@
-import { GET_ALL_ROOMS } from "./actionTypes"
-
+import { GET_ALL_ROOMS, GET_ROOMS_SUCCESS, GET_ROOMS_FAILURE } from "./actionTypes"
 const initialState = {
-    rooms: []
+    rooms: [],
+    loading: false,
+    hasErrors: false
 }
 
 const reducer = (state = initialState, action) => {
-    if (action.type === GET_ALL_ROOMS) {
-        return Object.assign({}, state, {
-            rooms: state.rooms.concat(action.payload)
-        })
+    switch (action.type) {
+        case GET_ALL_ROOMS:
+            console.log(action.type);
+            return { ...state, loading: true }
+        case GET_ROOMS_SUCCESS:
+            return { rooms: action.payload, loading: false, hasErrors: false }
+        case GET_ROOMS_FAILURE:
+            return { ...state, loading: false, hasErrors: true }
+
+        default:
+            return state;
     }
-    return state;
+
 }
 
 export default reducer
