@@ -1,4 +1,4 @@
-import { GET_ALL_ROOMS, GET_ROOMS_SUCCESS, GET_ROOMS_FAILURE } from "./actionTypes"
+import { GET_ALL_ROOMS, GET_ROOMS_SUCCESS, GET_ROOMS_FAILURE, FILTER_ROOMS } from "./actionTypes"
 const initialState = {
     rooms: [],
     loading: false,
@@ -14,7 +14,8 @@ const reducer = (state = initialState, action) => {
             return { rooms: action.payload, loading: false, hasErrors: false }
         case GET_ROOMS_FAILURE:
             return { ...state, loading: false, hasErrors: true }
-
+        case FILTER_ROOMS:
+            return { ...state, filter: state.rooms.filter(), loading: false, hasErrors: false }
         default:
             return state;
     }
