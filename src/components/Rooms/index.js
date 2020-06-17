@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { connect } from 'react-redux'
-import { fetchRooms, filteredRooms } from '../../domains/Rooms/actions'
+import { fetchRooms } from '../../domains/Rooms/actions'
 
 const Rooms = ({ dispatch, loading, rooms, hasErrors }) => {
     // const [filter, setFilter] = useState(0)
@@ -8,10 +8,6 @@ const Rooms = ({ dispatch, loading, rooms, hasErrors }) => {
     useEffect(() => {
         dispatch(fetchRooms());
     }, []);
-    useEffect(() => {
-        dispatch(filteredRooms());
-    }, []);
-
     // Show loading, error, or success state
     const renderRooms = () => {
         if (loading) return <p>Loading posts...</p>
@@ -22,15 +18,13 @@ const Rooms = ({ dispatch, loading, rooms, hasErrors }) => {
 
     return (
         <section className="hp-room-section" >
-
             <div className="container-fluid">
                 <div className="hp-room-items">
                     <div className="row">
                         {
                             Object.keys(rooms).map((obj, i) => {
                                 return (
-
-                                    <div className="col-lg-3 col-md-6">
+                                    <div className="col-lg-3 col-md-6" key={i}>
                                         <div className="hp-room-item set-bg" data-setbg="/assets/img/room/room-b1.jpg">
                                             <div className="hr-text">
 
@@ -61,29 +55,17 @@ const Rooms = ({ dispatch, loading, rooms, hasErrors }) => {
                                             </div>
                                         </div>
                                     </div>
-
-
-
-
                                 )
                             })}
-
-
-
-
                     </div>
                 </div>
             </div>
         </section >
     )
-
 }
-
 const mapStateToProps = state => ({
     loading: state.rooms.loading,
     rooms: state.rooms.rooms,
-    filter: state.rooms.filter,
     hasErrors: state.rooms.hasErrors
 })
-
 export default connect(mapStateToProps)(Rooms) 

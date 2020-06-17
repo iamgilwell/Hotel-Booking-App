@@ -1,5 +1,5 @@
-import React, { Component } from 'react'
-import BookingForm from '../Shared/BookingForm'
+import React, { Component } from 'react';
+import RoomFilter from '../Shared/RoomFilter';
 
 const Slider = () => {
     return (
@@ -14,7 +14,7 @@ const Slider = () => {
                             <a href="#" className="primary-btn">Discover Now</a>
                         </div>
                     </div>
-                    <BookingForm />
+                    <RoomFilter />
                 </div>
             </div>
             <div className="hero-slider owl-carousel">
@@ -26,4 +26,4 @@ const Slider = () => {
     )
 }
 
-export default Slider
+export default Slider;
