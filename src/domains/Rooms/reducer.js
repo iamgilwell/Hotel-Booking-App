@@ -12,7 +12,7 @@ const reducer = (state = initialState, action) => {
             console.log(action.type);
             return { ...state, loading: true }
         case GET_ROOMS_SUCCESS:
-            return { rooms: action.payload, loading: false, hasErrors: false }
+            return { ...state,rooms: action.payload, loading: false, hasErrors: false }
         case GET_ROOMS_FAILURE:
             return { ...state, loading: false, hasErrors: true }
         case FILTER_ROOMS_BY_PRICE:

@@ -187,28 +187,23 @@ class Header extends Component {
                         
                         <ul>
                             <Route>
-                        <NavLink
+                            <li> <NavLink
                           to="/" exact
                         >
                           Home
-                        </NavLink>
-                        <NavLink
+                        </NavLink></li>
+                        <li> <NavLink
                           to="/rooms"
                         >
                           Rooms
-                        </NavLink>
-                        <NavLink
+                        </NavLink></li>
+                        <li> <NavLink
                           to="/about-us"
                         >
                           About Us
-                        </NavLink>
+                        </NavLink></li>
                         </Route>
-                          <li>
-                            <a href="./rooms.html">Roomsdddd</a>
-                          </li>
-                          <li>
-                            <a href="./about-us.html">About Us</a>
-                          </li>
+                         
                           <li>
                             <a href="./pages.html">Pages</a>
                             <ul className="dropdown">

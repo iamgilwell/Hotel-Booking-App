@@ -21,7 +21,7 @@ export const filterByprice = filters => ({
 
 export function fetchRooms() {
     return async dispatch => {
-        dispatch(getRooms())
+      //  dispatch(getRooms())
         try {
             const response = await fetch('http://127.0.0.1:8000/api/')
             const data = await response.json()

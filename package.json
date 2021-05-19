@@ -25,7 +25,7 @@
   "scripts": {
     "serve": "live-server public/",
     "build": "webpack",
-    "dev-server": "webpack-dev-server"
+    "start": "webpack-dev-server"
   },
   "dependencies": {
     "@babel/plugin-transform-runtime": "^7.10.1",
