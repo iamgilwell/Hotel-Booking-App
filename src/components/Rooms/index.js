@@ -1,34 +1,32 @@
 import React, {useEffect, useState} from 'react';
 import {connect} from 'react-redux';
 import {fetchRooms, getRoomsSuccess} from '../../domains/Rooms/actions';
-import {Link } from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 const Rooms = (props) => {
   // const [filter, setFilter] = useState(0)
-  const {dispatch, loading, rooms, hasErrors} =  props;
+  const {dispatch, loading, rooms, hasErrors} = props;
   const [allRooms, setRooms] = useState([]);
   useEffect(() => {
     async function fetchData() {
-        // You can await here
-        const response = await dispatch(fetchRooms());
-        // ...
-      }
-      fetchData();
- 
+      // You can await here
+      const response = await dispatch(fetchRooms());
+      // ...
+    }
+    fetchData();
+
     setRooms(fetchData());
   }, []);
 
-  
-//   useEffect(() => {
-//     //setRooms(dispatch(fetchRooms()));
-//     //dispatch(fetchRooms());
-//     const fetchAllRooms = () => dispatch(fetchRooms());
-//     fetchAllRooms();
-//     setRooms(fetchAllRooms)
-//   },[setRooms]);
+  //   useEffect(() => {
+  //     //setRooms(dispatch(fetchRooms()));
+  //     //dispatch(fetchRooms());
+  //     const fetchAllRooms = () => dispatch(fetchRooms());
+  //     fetchAllRooms();
+  //     setRooms(fetchAllRooms)
+  //   },[setRooms]);
 
-
-  console.log('Index.js data---------->', allRooms);
+  console.log('Index.js data----------> rooms', rooms);
   // Show loading, error, or success state
   const renderRooms = () => {
     if (loading) return <p>Loading posts...</p>;
@@ -36,15 +34,15 @@ const Rooms = (props) => {
     return rooms.map((room) => <p key={room.id} room={room} />);
   };
 
-  const RoomDivHolder = ({name, number_of_guests, price, room_number}) => {
+  const RoomDivHolder = ({id, name, number_of_guests, price, room_number}) => {
     return (
       <div className="col-lg-4 col-md-6">
         <div className="room-item">
           <img src="img/room/room-1.jpg" alt="" />
           <div className="ri-text">
-            <h4>Premium King Room</h4>
+            <h4>{name}</h4>
             <h3>
-              159$<span>/Pernight</span>
+              {price}$<span> / Pernight</span>
             </h3>
             <table>
               <tbody>
@@ -66,7 +64,9 @@ const Rooms = (props) => {
                 </tr>
               </tbody>
             </table>
-            <Link to="/room-details" className="primary-btn">More Details</Link>
+            <Link to={`/room-details/${id}`} className="primary-btn">
+              More Details
+            </Link>
           </div>
         </div>
       </div>
@@ -78,22 +78,9 @@ const Rooms = (props) => {
       <div className="breadcrumb-section">
         <div className="container">
           <div className="row">
-            {rooms.map((room) => {
-              <div>
-                <p>This is it</p>
-                <p key={room.id}>{room.name}</p>
-              </div>;
-            })}
-            <RoomDivHolder />
-            <div className="col-lg-12">
-              <div className="breadcrumb-text">
-                <h2>Our Rooms</h2>
-                <div className="bt-option">
-                  <a href="./home.html">Home</a>
-                  <span>Rooms</span>
-                </div>
-              </div>
-            </div>
+            {rooms.map((room, id) => (
+              <RoomDivHolder id={room.id} name={room.name} price={room.price} />
+            ))}
           </div>
         </div>
       </div>
