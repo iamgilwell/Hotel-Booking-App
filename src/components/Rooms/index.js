@@ -64,9 +64,13 @@ const Rooms = (props) => {
                 </tr>
               </tbody>
             </table>
-            <Link to={`/room-details/${id}`} className="primary-btn">
+
+
+            <Link to={{pathname: `/room-details/${id}`, state: {rooms:rooms} }} className="primary-btn">
               More Details
             </Link>
+
+            
           </div>
         </div>
       </div>
