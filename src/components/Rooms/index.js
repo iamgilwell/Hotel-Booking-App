@@ -1,11 +1,11 @@
-import React, {useEffect, useState} from 'react';
-import {connect} from 'react-redux';
-import {fetchRooms, getRoomsSuccess} from '../../domains/Rooms/actions';
-import {Link} from 'react-router-dom';
+import React, { useEffect, useState } from "react";
+import { connect } from "react-redux";
+import { fetchRooms, getRoomsSuccess } from "../../domains/Rooms/actions";
+import { Link } from "react-router-dom";
 
 const Rooms = (props) => {
   // const [filter, setFilter] = useState(0)
-  const {dispatch, loading, rooms, hasErrors} = props;
+  const { dispatch, loading, rooms, hasErrors } = props;
   const [allRooms, setRooms] = useState([]);
   useEffect(() => {
     async function fetchData() {
@@ -18,15 +18,7 @@ const Rooms = (props) => {
     setRooms(fetchData());
   }, []);
 
-  //   useEffect(() => {
-  //     //setRooms(dispatch(fetchRooms()));
-  //     //dispatch(fetchRooms());
-  //     const fetchAllRooms = () => dispatch(fetchRooms());
-  //     fetchAllRooms();
-  //     setRooms(fetchAllRooms)
-  //   },[setRooms]);
-
-  console.log('Index.js data----------> rooms', rooms);
+  console.log("Index.js data----------> rooms", rooms);
   // Show loading, error, or success state
   const renderRooms = () => {
     if (loading) return <p>Loading posts...</p>;
@@ -34,7 +26,13 @@ const Rooms = (props) => {
     return rooms.map((room) => <p key={room.id} room={room} />);
   };
 
-  const RoomDivHolder = ({id, name, number_of_guests, price, room_number}) => {
+  const RoomDivHolder = ({
+    id,
+    name,
+    number_of_guests,
+    price,
+    room_number,
+  }) => {
     return (
       <div className="col-lg-4 col-md-6">
         <div className="room-item">
@@ -65,12 +63,12 @@ const Rooms = (props) => {
               </tbody>
             </table>
 
-
-            <Link to={{pathname: `/room-details/${id}`, state: {rooms:rooms} }} className="primary-btn">
+            <Link
+              to={{ pathname: `/room-details/${id}`, state: { rooms: rooms } }}
+              className="primary-btn"
+            >
               More Details
             </Link>
-
-            
           </div>
         </div>
       </div>

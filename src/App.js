@@ -15,7 +15,7 @@ function App() {
         <Home />
       </Route>
       <Route path="/rooms" component={Rooms} />
-      <Route path="/room-details" component={RoomDetails} />
+      <Route path="/room-details/:id" exact component={RoomDetails} />
       <Footer />
     </BrowserRouter>
   );
